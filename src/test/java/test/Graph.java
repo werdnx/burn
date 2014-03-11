@@ -23,8 +23,8 @@ public class Graph extends JFrame {
 			Object first = null;
 			for (int i = 0; i < holder.points.length; i++) {
 
-				Object v = graph.insertVertex(parent, null, String.valueOf(holder.points[i].id), holder.points[i].x * (holder.w / holder.maxX), holder.points[i].y * (holder.h / holder.maxY), 10,
-						10, "shape=ellipse;perimeter=ellipsePerimeter");
+				Object v = graph.insertVertex(parent, null, String.valueOf(holder.points[i].id), holder.points[i].x * (holder.w / holder.maxX), holder.points[i].y * (holder.h / holder.maxY), 15,
+						15, "shape=ellipse;perimeter=ellipsePerimeter");
 				if (i == 0) {
 					first = v;
 				}

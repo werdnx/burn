@@ -12,7 +12,7 @@ import java.util.TreeSet;
  */
 public abstract class BurnSolver<Entity> implements Burn<Entity> {
 	private boolean debug;
-	private double initialTemperature = 1000;
+	private double initialTemperature = 10;
 	private double endTemperature = 0.000000000000001;
 	private int randomSwapNumber = 3;
 	private Random rnd = new Random();
@@ -22,6 +22,7 @@ public abstract class BurnSolver<Entity> implements Burn<Entity> {
 
 	private double globalBestEnergy;
 	private Entity globalBest;
+	private int step;
 
 	private volatile boolean stop;
 
@@ -43,7 +44,7 @@ public abstract class BurnSolver<Entity> implements Burn<Entity> {
 		globalBest = arr;
 		globalBestEnergy = currentEnergy;
 		currentState = arr;
-		int step = 1;
+		step = 1;
 		double temperature = initialTemperature;
 		while (temperature > endTemperature && !stop) {
 			Entity candidateState = getNewStateCandidate(currentState);
@@ -63,6 +64,10 @@ public abstract class BurnSolver<Entity> implements Burn<Entity> {
 			temperature = decreaseTemperature(step);
 			step++;
 		}
+		//test
+		globalBest = localSearch(globalBest);
+		globalBestEnergy = stateEnergy(globalBest);
+		//test
 	}
 
 	@Override
@@ -70,7 +75,7 @@ public abstract class BurnSolver<Entity> implements Burn<Entity> {
 		stop = true;
 	}
 
-	protected abstract Entity localSearch(Entity arr);
+	public abstract Entity localSearch(Entity arr);
 
 	public abstract Entity getNewStateCandidate(Entity arr);
 
@@ -86,7 +91,6 @@ public abstract class BurnSolver<Entity> implements Burn<Entity> {
 	protected double getTransitionProbability(double delta, double temperature) {
 		return 1 / (1 + Math.exp(-delta / temperature));
 	}
-
 
 	public double getInitialTemperature() {
 		return initialTemperature;
@@ -118,5 +122,29 @@ public abstract class BurnSolver<Entity> implements Burn<Entity> {
 
 	public void setDebug(boolean debug) {
 		this.debug = debug;
+	}
+
+	public double getGlobalBestEnergy() {
+		return globalBestEnergy;
+	}
+
+	public void setGlobalBestEnergy(double globalBestEnergy) {
+		this.globalBestEnergy = globalBestEnergy;
+	}
+
+	public Entity getGlobalBest() {
+		return globalBest;
+	}
+
+	public void setGlobalBest(Entity globalBest) {
+		this.globalBest = globalBest;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
 	}
 }
