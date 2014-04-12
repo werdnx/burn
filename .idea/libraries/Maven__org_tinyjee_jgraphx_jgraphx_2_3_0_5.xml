@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.tinyjee.jgraphx:jgraphx:2.3.0.5">
     <CLASSES>
-      <root url="jar://D:/Workspace/LIBS/Maven/maven-repository/org/tinyjee/jgraphx/jgraphx/2.3.0.5/jgraphx-2.3.0.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/tinyjee/jgraphx/jgraphx/2.3.0.5/jgraphx-2.3.0.5.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/Workspace/LIBS/Maven/maven-repository/org/tinyjee/jgraphx/jgraphx/2.3.0.5/jgraphx-2.3.0.5-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/tinyjee/jgraphx/jgraphx/2.3.0.5/jgraphx-2.3.0.5-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/Workspace/LIBS/Maven/maven-repository/org/tinyjee/jgraphx/jgraphx/2.3.0.5/jgraphx-2.3.0.5-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/tinyjee/jgraphx/jgraphx/2.3.0.5/jgraphx-2.3.0.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

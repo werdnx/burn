@@ -18,6 +18,7 @@ public class SolverImpl extends BurnSolver<Point[]> {
 
 	@Override
 	public void solve(Point[] arr) {
+		setRandomSwapNumber(10);
 		super.solve(arr);
 	}
 
@@ -99,7 +100,7 @@ public class SolverImpl extends BurnSolver<Point[]> {
 	}
 
 	/**
-	 * move element with index from bofore element with index until
+	 * move element with index from before element with index until
 	 *
 	 * @param from
 	 * @param until

@@ -34,7 +34,7 @@ public class Solver {
 	 * @throws InterruptedException
 	 * @throws CloneNotSupportedException
 	 */
-	public static PointHolder solveForGraph(String[] args, long min, int threads) throws IOException, InterruptedException, CloneNotSupportedException {
+	public static PointHolder solveForGraph(String[] args, Burn<Point[]> customSolver, long min, int threads) throws IOException, InterruptedException, CloneNotSupportedException {
 		String fileName = null;
 
 		// get the temp file name
@@ -95,7 +95,7 @@ public class Solver {
 			arr[i - 1] = point;
 
 		}
-		Burn<Point[]> solver = proxySolve(arr, min, threads);
+		Burn<Point[]> solver = proxySolve(arr, customSolver, min, threads);
 
 		System.out.println(solver.value() + " " + (solver.isOptimal() ? 1 : 0));
 		for (int i = 0; i < points; i++) {
@@ -162,17 +162,19 @@ public class Solver {
 	}
 
 	private static Burn<Point[]> proxySolve(Point[] arr) {
-		return proxySolve(arr, 240, 3);
+		return proxySolve(arr, null, 250, 3);
 	}
 
-	private static Burn<Point[]> proxySolve(Point[] arr, long min, int threads) {
+	private static Burn<Point[]> proxySolve(Point[] arr, Burn<Point[]> customSolver, long min, int threads) {
 		List<Burn<Point[]>> pool = new LinkedList<Burn<Point[]>>();
 		for (int i = 0; i < threads; i++) {
 			pool.add(new SolverImpl());
 		}
-		Burn<Point[]> solver = new SolverTimeConcurrentProxy(pool, min);
-		solver.solve(arr);
-		return solver;
+		if (customSolver == null)
+			customSolver = new SolverTimeConcurrentProxy(pool, min);
+
+		customSolver.solve(arr);
+		return customSolver;
 	}
 
 }
